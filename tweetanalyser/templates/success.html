@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+<title> Twitter Sentiment Analysis</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+  
+  
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+		
+	.highcharts-figure, .highcharts-data-table table {
+    min-width: 320px; 
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: red;
+}
+.highcharts-data-table tr:hover {
+    background: pink;
+}
+rect.highcharts-background {
+color="none";
+}
+
+.highcharts-text-outline {
+
+fill="green";
+}
+
+
+input[type="number"] {
+	min-width: 50px;
+}
+
+
+.highcharts-text-outline text{
+
+color:'red';
+}
+
+
+.highcharts-figure, .highcharts-data-table table {
+  min-width: 320px; 
+  max-width: 800px;
+  margin: 1em auto;
+}
+
+.highcharts-data-table table {
+	font-family: Verdana, sans-serif;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
+}
+.highcharts-data-table caption {
+  padding: 1em 0;
+  font-size: 1.2em;
+  color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+  padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+  padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+  background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+  background: #f1f7ff;
+} 
+	
+	
+	
+	#container {
+    height: 400px;
+}
+
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 310px;
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+#sliders td input[type=range] {
+    display: inline;
+}
+#sliders td {
+    padding-right: 1em;
+    white-space: nowrap;
+}
+.line{
+width: auto-10px;
+height: auto-10px;
+border-bottom: 3px solid white;
+position: center;
+
+}
+	
+	
+	
+	body {
+	
+	background-color:#162447
+	
+	} 
+	.well{
+	background-color: #337AB7
+	}
+	.row.content {
+	color:white;
+	}
+	
+	
+	
+	
+.sidebar{
+background-color: #337AB7 ;
+width:320px;
+border:white;
+border-style: solid;
+border-width:0.5px;
+margin-left: 17px;
+height:600%;
+
+
+}
+	.well div {
+	
+	
+	}
+	.circular--square h2 {
+	text-align: center;
+	position : center;
+	margin:auto;
+	}
+	.circular--square {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 120px;
+	width: 120 px;
+	position : center;
+	border-radius:50%;
+	borde-img:0.5px;
+}
+	
+	
+  </style>
+</head>
+<body>
+
+
+	
+
+<div class="container-fluid">
+  <div class="row content">
+    <br>
+	
+	<div class="col-sm-3 sidenav hidden-xs sidebar">
+      
+      <ul class="nav nav-pills nav-stacked">
+        <div class='circular--square'>
+		<br>
+	  <br>
+	  <img class ='circular--square' src="{{ img }}"></img>
+	  <br>
+	  <br>
+	  <h2>{{name}}</h2>
+		</div>
+			
+        
+		
+		
+		</ul><br>
+    </div>
+    
+    
+    <div class="col-sm-9">
+	
+      <div class="well">
+        <h3>Twitter Sentiment Analysis</h3>
+        <p>@{{name}}</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+            <h4> {{like}} Total Likes </h4>
+            </h5>On latest 1000 Tweets</h5>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Followers</h4>
+            <p>{{follow_count}}</p> 
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Friends Count</h4>
+            <p>{{friends_count}}</p> 
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <h4>Average Like </h4>
+            <p>{{avg_like}}  Likes</p> 
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="well">
+            <h4>Top 5 Hashes</h4>
+            <p>{{fhash |join:'<br>'}}</p> 
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+            <h4>Top 5 Mentions</h4>
+			<p>{{fmention |join:'<br>'}}</p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+             <ul>
+			 <h4>Polarity % </h4>
+				{% for i,j in polarity.items %}
+				 {{ i }} : {{ j }}% <br>
+				{% endfor %}
+			</ul>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="well">
+		  <h4>Most Liked Tweet : {{max_like }} likes</h4>
+            <p>{{max_like_tweet}}</p> 
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+            <h4>Average Tweet Length</h4>
+			<p>{{avg_tweet_length}} letters</p> 
+          </div>
+        </div>
+      </div>
+	  <div class="line"></div>
+	  <figure class="highcharts-figure">
+  <div id="pie_polarity"></div>
+  </figure>
+
+<div class="line"></div>
+
+<figure class="highcharts-figure">
+  <div id="wordcloud"></div>
+</figure>
+
+<div class="line"></div>
+
+
+<div class="line"></div>
+
+<figure class="highcharts-figure">
+    <div id="column_hash"></div>
+    
+    <div id="sliders">
+        <table>
+            <tr>
+                <td><label for="alpha">Alpha Angle</label></td>
+                <td><input id="alpha" type="range" min="0" max="45" value="15"/> <span id="alpha-value" class="value"></span></td>
+            </tr>
+            <tr>
+                <td><label for="beta">Beta Angle</label></td>
+                <td><input id="beta" type="range" min="-45" max="45" value="15"/> <span id="beta-value" class="value"></span></td>
+            </tr>
+            <tr>
+                <td><label for="depth">Depth</label></td>
+                <td><input id="depth" type="range" min="20" max="100" value="50"/> <span id="depth-value" class="value"></span></td>
+            </tr>
+        </table>
+    </div>
+</figure>
+
+
+    </div>
+
+  </div>
+  
+</div>
+
+
+<figure class="highcharts-figure">
+  <div id="container1"></div>
+  </figure>
+
+
+<script>
+// Set up the chart
+var chart = new Highcharts.Chart({
+    chart: {
+		backgroundColor:'none',
+        renderTo: 'column_hash',
+        type: 'column',
+        options3d: {
+            enabled: true,
+            alpha: 15,
+            beta: 15,
+            depth: 50,
+            viewDistance: 25
+        }
+    },
+      
+          
+		  
+    title: {
+	
+	style: {
+            color: 'white',
+            fontWeight: 'bold'
+        },
+        text: 'All Hash Counts',
+		color:'white'
+    },
+    subtitle: {
+	style: {
+            color: 'white',
+            fontWeight: 'bold'
+        },
+        text: 'All hashes counts used by {{name}}',
+		color:'white'
+	},
+	
+	 xAxis: {
+          categories: [
+            {% for entry in keys_hash %}'{{ entry }} '{% if not forloop.last %}, {% endif %}{% endfor %}
+          ]
+          
+        },
+    plotOptions: {
+        column: {
+            depth: 25
+        }
+    },
+    series: [{
+        data: {{value_hash}}
+    }]
+});
+
+function showValues() {
+    $('#alpha-value').html(chart.options.chart.options3d.alpha);
+    $('#beta-value').html(chart.options.chart.options3d.beta);
+    $('#depth-value').html(chart.options.chart.options3d.depth);
+}
+
+// Activate the sliders
+$('#sliders input').on('input change', function () {
+    chart.options.chart.options3d[this.id] = parseFloat(this.value);
+    showValues();
+    chart.redraw(false);
+});
+
+showValues();
+</script>
+
+
+
+
+<script>
+var text='{{all_words}}';
+
+var lines = text.split(/[,\. ]+/g),
+
+data = Highcharts.reduce(lines, function (arr, word) {
+        var obj = Highcharts.find(arr, function (obj) {
+            return obj.name === word;
+        });
+        if (obj) {
+            obj.weight += 1;
+        } else {
+            obj = {
+                name: word,
+                weight: 1
+            };
+            arr.push(obj);
+        }
+        return arr;
+    }, []);
+
+
+
+
+Highcharts.chart('wordcloud', {
+  accessibility: {
+    screenReaderSection: {
+      beforeChartFormat: '<h5>{chartTitle}</h5>' +
+        '<div>{chartSubtitle}</div>' +
+        '<div>{chartLongdesc}</div>' +
+        '<div>{viewTableButton}</div>'
+    }
+  },
+  
+  chart: {
+    backgroundColor: "none",
+	},
+  series: [{
+	
+    type: 'wordcloud',
+    data: data,
+    name: 'Occurrences',
+	rotation: {
+            from: 0,
+            to: 0,},
+            
+    placementStrategy:'random'
+  }],
+  title: {
+  style: {
+            color: 'white',
+            fontWeight: 'bold'
+        },
+  
+    text: 'Wordcloud for all Words'
+  }
+});
+
+
+</script>
+<script>
+
+Highcharts.chart('pie_polarity', {
+  chart: {
+    
+	backgroundColor: "none",
+	plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
+  },
+  title: {
+  style: {
+            color: 'white',
+            fontWeight: 'bold'
+        },
+    text: 'Polarity of {{name}}',
+	
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  accessibility: {
+    point: {
+      valueSuffix: '%'
+    }
+  },
+  plotOptions: {
+    pie: {
+	
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+      }
+    }
+  },
+  series: [{
+    name: 'Sentiment',
+    colorByPoint: true,
+    
+	
+	data: [
+	{
+      name: "Positive",
+      y: {{ datapoll.Positive }}
+    }, {
+      name: 'Negative',
+      y: {{ datapoll.Negative }}
+    }, {
+      name: 'Neutral',
+      y: {{ datapoll.Neutral }}
+    }
+	
+	]
+	
+  }]
+});
+
+
+
+</script>
+
+
+
+</div>
+
+</body>
+</html>

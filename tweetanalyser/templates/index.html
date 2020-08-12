@@ -1,0 +1,114 @@
+<style>
+
+
+
+html, body {
+  height: 100%;
+  background-image: url('https://image.freepik.com/free-vector/global-network-connection_41981-1014.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  color: #e6ffff;
+  overflow:hidden;
+  text-align: center;
+}
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.mainbox {
+margin:0px 8%;
+height:50%;
+width:30%;
+
+}
+.container h1 {
+  font-family: Arial, sans-serif;
+  font-size: 30px;
+  color: #DDCCEE;
+  margin-top: 80px;
+}
+
+.container form {
+  margin: 20px;
+}
+
+.container input {
+  width: 350px;
+  height: 15px;
+  font-size: 15px;
+  margin: 2px;
+  padding: 20px;
+  transition: all 0.2s ease-in-out;
+}
+
+
+
+.container p {
+  margin: 100px;
+}
+
+.message {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  color: #ff9999
+}
+.logodiv {
+height:120px;
+width:120px;
+border-radius:50%;
+background-color:white;
+margin-left:35%;
+}
+.mainbox img {
+
+width : 120px; 
+height:auto;
+}
+</style>
+
+  <title> Twitter Sentiment Analysis</title>
+<body>
+     <div class="container">
+	 <div class="mainbox">
+	 
+        <h1>Welcome to the dashboard!</h1>
+		<br>
+        <div class="logodiv">
+		<img src="https://cdn1.iconfinder.com/data/icons/user-outline-icons-set/144/User_Group-512.png">
+		</div>
+		<br>
+		<h3>Please give the Screeen name of user</h3>
+ 
+		
+		<div class="Screen_name">  
+
+			<form action={% url 'success' %} method="POST">
+			{% csrf_token %}
+			<input id="a" title="Screen Name" placeholder="Enter the screen name here." type="string" name="screen_name" required> <br>
+			<button type="submit"> Submit </button>
+			</form>
+		</div>
+      </div>
+		</div>
+		</div>
+        
+        
+	</div>
+</body>
