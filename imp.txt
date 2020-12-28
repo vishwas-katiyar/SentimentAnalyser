@@ -1,3 +1,0 @@
-pip installl virtualenv
-virtualenv newenv
-cd newenv/scripts/activate

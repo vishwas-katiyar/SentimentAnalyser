@@ -1,5 +1,5 @@
 ### Import Dependencies and packages
-
+import random
 from django.shortcuts import render
 from django.http import HttpResponse
 import tweepy
@@ -11,6 +11,12 @@ import re
 import nltk
 from nltk.stem.porter import *
 from nltk.stem import WordNetLemmatizer 
+from django.views.decorators.csrf import csrf_exempt
+import base64
+import cv2
+from PIL import Image
+import io
+
 
 ### Setting up Keys
 
@@ -84,7 +90,6 @@ def make_string_from_list(string):
 ### Method for visuallization of tweets
 
 def success(request):
-
     if request.method=='POST':
         global s_name
         s_name = request.POST['screen_name']
@@ -224,6 +229,4 @@ def success(request):
     return render(request,'success.html',context)
 
 
-    
-    
-    
+        
