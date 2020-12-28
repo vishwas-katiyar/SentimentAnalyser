@@ -12,10 +12,8 @@ import nltk
 from nltk.stem.porter import *
 from nltk.stem import WordNetLemmatizer 
 from django.views.decorators.csrf import csrf_exempt
-import base64
-import cv2
-from PIL import Image
-import io
+
+
 
 
 ### Setting up Keys
